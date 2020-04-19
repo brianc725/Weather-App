@@ -24,7 +24,12 @@ async function getWeather(req, res) {
 
   const weatherURL = `http://api.openweathermap.org/data/2.5/weather?appid=${WEATHER_API_KEY}&zip=${zipCode}&units=${units}`;
   await fetch(weatherURL)
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.status !== 200) {
+        throw new Error('Error from API call to OpenWeatherMap');
+      }
+      return response.json();
+    })
     .then((data) => {
       const result = JSON.stringify(data);
 
@@ -35,7 +40,7 @@ async function getWeather(req, res) {
       res.send(result);
     })
     .catch((error) => {
-      res.status(500).send(JSON.stringify(error.toString()));
+      res.status(500).send(JSON.stringify(error.message));
     });
 }
 
