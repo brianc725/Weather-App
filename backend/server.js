@@ -4,6 +4,7 @@ const express = require('express');
 const Redis = require("ioredis");
 const fetch = require('node-fetch');
 var moment = require('moment');
+var cors = require('cors')
 
 require('dotenv').config()
 
@@ -15,6 +16,7 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
+app.use(cors());
 
 async function getWeather(req, res) {
   const { zipCode, units } = req.params;

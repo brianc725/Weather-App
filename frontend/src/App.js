@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import './App.css';
 
 function App() {
 
-  const [searchText, changeSearchText] = useState("");
+  const [searchText, changeSearchText] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [units, setUnits] = useState('imperial');
+  const [error, setError] = useState('');
+  const [weather, setWeather] = useState('');
+
+  // Start with a default zip code as a placeholder
+  useEffect(
+    () => {
+      fetchWeatherData(90024, 'imperial');
+      setLoading(false);
+    }, []);
 
   const navbarSearchChange = (event) => {
     const { value } = event.target;
@@ -20,6 +31,19 @@ function App() {
     // Otherwise if good, do API call and check response status
 
     navbarSearchClear();
+  }
+
+  const fetchWeatherData = async (zipCode, units) => {
+    let data = await fetch(`http://localhost:8080/api/weather/${zipCode}/${units}`, {mode: 'cors'});
+    if (data.status === 200) {
+      data = await data.json();
+      setWeather(data);
+      return;
+    }
+
+    // Error
+    data = await data.json();
+    setError(data);
   }
 
   const navbarSearchClear = () => {

@@ -6,6 +6,7 @@ RUN npm install nodemon -g
 
 WORKDIR /src
 COPY ./package.json /src/package.json
+COPY ./.env /src/.env
 RUN npm install
 
 COPY ./nodemon.json /src/nodemon.json
