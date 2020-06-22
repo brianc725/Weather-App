@@ -27,8 +27,11 @@ function App() {
 
   const navbarSearchSubmission = () => {
     // Basic zip code validation all numbers and 5 digits regex
-    console.log(searchText);
-    // Otherwise if good, do API call and check response status
+    if (/^\d{5}$/.test(searchText)) {
+      fetchWeatherData(searchText, units);
+    } else {
+      setError('Invalid zip code.');
+    }
 
     navbarSearchClear();
   }
