@@ -41,6 +41,7 @@ function App() {
     if (data.status === 200) {
       data = await data.json();
       setWeather(data);
+      setError('');
       return;
     }
 
@@ -52,8 +53,6 @@ function App() {
   const navbarSearchClear = () => {
     changeSearchText('');
   }
-
-  // use Effect to do initial page search query and future api calls
 
   return (
     <div className="App">

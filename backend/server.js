@@ -35,9 +35,9 @@ async function getWeather(req, res) {
     .then((data) => {
       const result = JSON.stringify(data);
 
-      // Store in redis with expiration of seconds until midnight
-      const secondsTillMidnight = moment("24:00:00", "hh:mm:ss").diff(moment(), 'seconds');
-      redis.set(key, result, "EX", secondsTillMidnight);
+      // Store in redis with expiration of 10 minutes from first instance of search
+      const secondsExp = 600;
+      redis.set(key, result, "EX", secondsExp);
 
       res.send(result);
     })
