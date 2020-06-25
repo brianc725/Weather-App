@@ -3,7 +3,6 @@
 const express = require('express');
 const Redis = require("ioredis");
 const fetch = require('node-fetch');
-var moment = require('moment');
 var cors = require('cors')
 
 require('dotenv').config()

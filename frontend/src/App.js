@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import Display from './components/Display';
 import './App.css';
 
 function App() {
@@ -62,7 +63,10 @@ function App() {
         onSubmit={navbarSearchSubmission}
         onClear={navbarSearchClear}
       />
-        Current weather here
+      {
+        weather !== '' &&
+        <Display data={weather}/>
+      }
     </div>
   );
 }
