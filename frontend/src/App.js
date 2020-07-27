@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Display from './components/Display';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './App.css';
 
 function App() {
@@ -64,8 +65,10 @@ function App() {
         onClear={navbarSearchClear}
       />
       {
-        weather !== '' &&
+        weather !== '' ?
         <Display data={weather}/>
+        :
+        <CircularProgress className="loading"/>
       }
     </div>
   );

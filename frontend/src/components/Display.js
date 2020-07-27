@@ -1,5 +1,5 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
+import './Display.css'
 
 const Display = ({ data }) => {
   const { temp, temp_min, temp_max } = data.main;
@@ -10,18 +10,26 @@ const Display = ({ data }) => {
 
   const logoURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
+  const tempUnits = `\u00b0F`;
+  const speedUnits = 'mph';
+
   return (
-    <div className="Display">
+    <>
+    <div className="display-container">
       <div className="display-name">{data.name}</div>
-      <div className="display-current">Current temperature: {temp}</div>
-      <div className="display-high">High: {temp_max}</div>
-      <div className="display-low">Low: {temp_min}</div>
-      <div className="display-main">{main}</div>
-      <div className="display-description">{description}</div>
-      <div className="display-wind">{speed} UNITS @ {deg} degrees</div>
-      <div className="display-update">Data as of {date.toString()}</div>
-      <Avatar alt="Current Weather Icon" src={logoURL} />
+      <div className="display-temp-block">
+        <div className="display-current">{temp}{tempUnits}</div>
+        <div className="display-range">{temp_max}{tempUnits}/{temp_min}{tempUnits}</div>
+      </div>
+      <img  alt="Current Weather Icon" src={logoURL} className="display-img"/>
+      <div className="display-msg">
+        <div className="display-main">{main}</div>
+        <div className="display-description">{description}</div>
+      </div>
     </div>
+    <div className="display-wind">Wind - {speed} {speedUnits} @ {deg} degrees</div>
+    <footer className="display-update">Data as of {date.toString()}</footer>
+    </>
   )
 }
 

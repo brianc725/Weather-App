@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+
+.display-container {
+    width: 60%;
+    margin: auto;
+    padding-top: 120px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.display-update {
+    font-size: 8px;
+}
+
+.display-description {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.display-img {
+    height: 100px;
+    margin: auto;
+}
+
+@media(max-width: 724px) {
+    .display-container {
+        grid-template-columns: 1fr;
+    }
+}
