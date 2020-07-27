@@ -30,4 +30,10 @@ Frontend utilized react with and Material UI with very basic CSS styling and gri
 
 ## Backend 
 
-Used Docker Compose to connect both Redis and the Node instance together in one easy to run command. 
+Used Docker Compose to connect both Redis and the Node instance together in one easy to run command.
+
+## Future Updates
+
+- Unit converter to toggle between F and C along with mph and km/h.
+- Clean up unnecessary imports in frontend
+- Add frontend into docker-compose for 1 command running of entire application.
